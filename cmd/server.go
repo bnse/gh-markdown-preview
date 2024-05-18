@@ -79,7 +79,7 @@ func (server *Server) Serve(param *Param) error {
 }
 
 func handler(filename string, param *Param, h http.Handler) http.Handler {
-		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
 		if !strings.HasSuffix(r.URL.Path, ".md") && r.URL.Path != "/" {
 			h.ServeHTTP(w, r)
@@ -115,20 +115,20 @@ func handler(filename string, param *Param, h http.Handler) http.Handler {
 }
 
 func mdResponse(w http.ResponseWriter, filename string) {
-		w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 
-		markdown, err := slurp(filename)
-		if err != nil {
-			http.Error(w, err.Error(), 500)
-			return
-		}
+	markdown, err := slurp(filename)
+	if err != nil {
+		http.Error(w, err.Error(), 500)
+		return
+	}
 
-		html, err := toHTML(markdown)
-		if err != nil {
-			http.Error(w, err.Error(), 500)
-			return
-		}
-		fmt.Fprintf(w, "%s", html)
+	html, err := toHTML(markdown)
+	if err != nil {
+		http.Error(w, err.Error(), 500)
+		return
+	}
+	fmt.Fprintf(w, "%s", html)
 
 }
 

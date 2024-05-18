@@ -3,7 +3,7 @@ package cmd
 import (
 	"bytes"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -32,7 +32,7 @@ func targetFile(filename string) (string, error) {
 }
 
 func findReadme(dir string) (string, error) {
-	files, _ := ioutil.ReadDir(dir)
+	files, _ := os.ReadDir(dir)
 	for _, f := range files {
 		r := regexp.MustCompile(`(?i)^readme`)
 		if r.MatchString(f.Name()) {
@@ -57,7 +57,7 @@ func slurp(fileName string) (string, error) {
 		return "", err
 	}
 	defer f.Close()
-	b, _ := ioutil.ReadAll(f)
+	b, _ := io.ReadAll(f)
 	text := string(b)
 	return text, nil
 }
