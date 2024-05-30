@@ -1,4 +1,4 @@
-module github.com/yusukebe/gh-markdown-preview
+module github.com/bnse/gh-markdown-preview
 
 go 1.17
 

@@ -31,8 +31,8 @@ type loggingResponseWriter struct {
 //go:embed template.html
 var htmlTemplate string
 
-//go:embed assets/*
-var Assets embed.FS
+//go:embed statics/*
+var Statics embed.FS
 
 const defaultPort = 3333
 
@@ -53,7 +53,7 @@ func (server *Server) Serve(param *Param) error {
 	r := http.NewServeMux()
 	r.Handle("/", wrapHandler(handler(filename, param, http.FileServer(http.Dir(dir)))))
 	r.Handle("/__/md", wrapHandler(mdHandler(filename)))
-	r.Handle("/assets/", http.StripPrefix("/", http.FileServer(http.FS(Assets))))
+	r.Handle("/statics/", http.StripPrefix("/", http.FileServer(http.FS(Statics))))
 
 	watcher, err := createWatcher(dir)
 	if err != nil {
@@ -100,7 +100,7 @@ func handler(filename string, param *Param, h http.Handler) http.Handler {
 			return
 		}
 
-		tmpl.ParseFS(Assets, htmlTemplate)
+		tmpl.ParseFS(Statics, htmlTemplate)
 
 		markdown, err := slurp(filename)
 		if err != nil {
