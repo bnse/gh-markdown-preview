@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"embed"
 	_ "embed"
 	"fmt"
 	"net"
@@ -30,6 +31,9 @@ type loggingResponseWriter struct {
 //go:embed template.html
 var htmlTemplate string
 
+//go:embed assets/*
+var Assets embed.FS
+
 const defaultPort = 3333
 
 func (server *Server) Serve(param *Param) error {
@@ -49,6 +53,7 @@ func (server *Server) Serve(param *Param) error {
 	r := http.NewServeMux()
 	r.Handle("/", wrapHandler(handler(filename, param, http.FileServer(http.Dir(dir)))))
 	r.Handle("/__/md", wrapHandler(mdHandler(filename)))
+	r.Handle("/assets/", http.StripPrefix("/", http.FileServer(http.FS(Assets))))
 
 	watcher, err := createWatcher(dir)
 	if err != nil {
@@ -94,6 +99,8 @@ func handler(filename string, param *Param, h http.Handler) http.Handler {
 			http.NotFound(w, r)
 			return
 		}
+
+		tmpl.ParseFS(Assets, htmlTemplate)
 
 		markdown, err := slurp(filename)
 		if err != nil {

@@ -2,11 +2,11 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {{ $cssURL :=
-    "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.5.1/github-markdown.min.css"
+    "/assets/github-markdown.min.css"
     }} {{ if eq .Mode "dark" }} {{ $cssURL =
-    "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.5.1/github-markdown-dark.min.css"
+    "/assets/github-markdown-dark.min.css"
     }} {{ else if eq .Mode "light" }} {{ $cssURL =
-    "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.5.1/github-markdown-light.min.css"
+    "/assets/github-markdown-light.min.css"
     }}{{ end }}
     <link rel="stylesheet" href="{{ $cssURL }}" />
     <style>
@@ -41,7 +41,7 @@
   <body>
     <script
       type="text/javascript"
-      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      src="/assets/jquery-3.6.0.min.js"
     ></script>
     <script>
       MathJax = {
@@ -60,7 +60,7 @@
     <script
       type="text/javascript"
       async
-      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"
+      src="/assets/tex-mml-chtml.min.js"
     ></script>
     <script type="text/javascript">
       function loadmd() {
@@ -114,7 +114,7 @@
     </script>
     <article id="markdown-body" class="markdown-body"></article>
     <script type="module">
-      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+      import mermaid from "/assets/mermaid.esm.min.mjs";
     </script>
   </body>
 </html>
