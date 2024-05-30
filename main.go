@@ -1,7 +1,7 @@
 package main
 
 import (
-	cmd "github.com/yusukebe/gh-markdown-preview/cmd"
+	cmd "github.com/bnse/gh-markdown-preview/cmd"
 )
 
 func main() {

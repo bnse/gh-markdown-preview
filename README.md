@@ -28,7 +28,7 @@ Live reloading:
 ## Installation
 
 ```
-gh extension install yusukebe/gh-markdown-preview
+gh extension install bnse/gh-markdown-preview
 ```
 
 Upgrade:
