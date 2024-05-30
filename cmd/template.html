@@ -1,14 +1,14 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- {{ $cssURL := -->
-    <!-- "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.5.1/github-markdown.min.css" }} {{ -->
-    <!-- if eq .Mode "dark" }} {{ $cssURL = -->
-    <!-- "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.5.1/github-markdown-dark.min.css" -->
-    <!-- }} {{ else if eq .Mode "light" }} {{ $cssURL = -->
-    <!-- "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.5.1/github-markdown-light.min.css" -->
-    <!-- }}{{ end }} -->
-    <link rel="stylesheet" href="./github-markdown-light.min.css" />
+    {{ $cssURL :=
+    "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.5.1/github-markdown.min.css"
+    }} {{ if eq .Mode "dark" }} {{ $cssURL =
+    "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.5.1/github-markdown-dark.min.css"
+    }} {{ else if eq .Mode "light" }} {{ $cssURL =
+    "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.5.1/github-markdown-light.min.css"
+    }}{{ end }}
+    <link rel="stylesheet" href="{{ $cssURL }}" />
     <style>
       {{ if eq .Mode "dark" }}
       body {
@@ -39,20 +39,23 @@
     </style>
   </head>
   <body>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+    ></script>
     <script>
       MathJax = {
         tex: {
           inlineMath: [
-            ['$', '$'],
-            ['\\(', '\\)'],
+            ["$", "$"],
+            ["\\(", "\\)"],
           ],
           displayMath: [
-            ['$$', '$$'],
-            ['\\[', '\\]'],
+            ["$$", "$$"],
+            ["\\[", "\\]"],
           ],
         },
-      }
+      };
     </script>
     <script
       type="text/javascript"
@@ -110,5 +113,8 @@
       })()
     </script>
     <article id="markdown-body" class="markdown-body"></article>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+    </script>
   </body>
 </html>
