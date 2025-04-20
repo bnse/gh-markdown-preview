@@ -2,11 +2,11 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {{ $cssURL :=
-    "/statics/github-markdown.min.css"
+    "/statics/github-markdown.css"
     }} {{ if eq .Mode "dark" }} {{ $cssURL =
-    "/statics/github-markdown-dark.min.css"
+    "/statics/github-markdown-dark.css"
     }} {{ else if eq .Mode "light" }} {{ $cssURL =
-    "/statics/github-markdown-light.min.css"
+    "/statics/github-markdown-light.css"
     }}{{ end }}
     <link rel="stylesheet" href="{{ $cssURL }}" />
     <style>
@@ -41,7 +41,7 @@
   <body>
     <script
       type="text/javascript"
-      src="/statics/jquery-3.6.0.min.js"
+      src="/statics/jquery-3.7.1.min.js"
     ></script>
     <script>
       MathJax = {
