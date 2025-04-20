@@ -24,7 +24,6 @@ builds:
       - darwin
     ignore:
       - goos: windows
-      - goarch: arm64
 
 archives:
   - formats: [binary]
