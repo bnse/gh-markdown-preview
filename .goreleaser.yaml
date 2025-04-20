@@ -23,7 +23,7 @@ builds:
       - windows
       - darwin
     ignore:
-      - goos: windows
+      - goarch: i386
 
 archives:
   - formats: [binary]
